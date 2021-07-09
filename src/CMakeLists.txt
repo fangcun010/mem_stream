@@ -1,0 +1,1 @@
+add_library(mem_stream mem_stream.c ${PROJECT_SOURCE_DIR}/include/mem_stream.h)
