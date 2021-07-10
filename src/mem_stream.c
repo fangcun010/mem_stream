@@ -76,6 +76,14 @@ MEM_STREAM_API void mem_stream_close(mem_stream_t* stream) {
     stream->size = 0;
 }
 
+MEM_STREAM_API void mem_stream_data(mem_stream_t* stream) {
+    return stream->buffer;
+}
+
+MEM_STREAM_API void mem_stream_position(mem_stream_t* stream) {
+    return stream->position;
+}
+
 MEM_STREAM_API void mem_stream_seek(mem_stream_t* stream, uint32_t position) {
     stream->position = position;
 }
@@ -194,8 +202,7 @@ MEM_STREAM_API void mem_stream_read(mem_stream_t* stream, void* buffer, uint32_t
 
 MEM_STREAM_API void mem_stream_write_int8(mem_stream_t* stream,int8_t val) {
     assert(stream->usage & MEM_STREAM_OUTPUT);
-    assert(mem_stream_check_buffer_size(stream, stream->position + sizeof(val)) == 
-        MEM_STREAM_OK);
+    mem_stream_check_buffer_size(stream, stream->position + sizeof(val));
 
     *(int8_t*)((uint8_t*)stream->buffer + stream->position) = val;
     stream->position += sizeof(val);
@@ -206,8 +213,7 @@ MEM_STREAM_API void mem_stream_write_int8(mem_stream_t* stream,int8_t val) {
 
 MEM_STREAM_API void mem_stream_write_uint8(mem_stream_t* stream,uint8_t val) {
     assert(stream->usage & MEM_STREAM_OUTPUT);
-    assert(mem_stream_check_buffer_size(stream, stream->position + sizeof(val)) ==
-        MEM_STREAM_OK);
+    mem_stream_check_buffer_size(stream, stream->position + sizeof(val));
 
     *(uint8_t*)((uint8_t*)stream->buffer + stream->position) = val;
     stream->position += sizeof(val);
@@ -218,8 +224,7 @@ MEM_STREAM_API void mem_stream_write_uint8(mem_stream_t* stream,uint8_t val) {
 
 MEM_STREAM_API void mem_stream_write_int16(mem_stream_t* stream,int16_t val) {
     assert(stream->usage & MEM_STREAM_OUTPUT);
-    assert(mem_stream_check_buffer_size(stream, stream->position + sizeof(val)) ==
-        MEM_STREAM_OK);
+    mem_stream_check_buffer_size(stream, stream->position + sizeof(val));
 
     *(int16_t*)((uint8_t*)stream->buffer + stream->position)=val;
     stream->position += sizeof(val);
@@ -230,8 +235,7 @@ MEM_STREAM_API void mem_stream_write_int16(mem_stream_t* stream,int16_t val) {
 
 MEM_STREAM_API void mem_stream_write_uint16(mem_stream_t* stream,uint16_t val) {
     assert(stream->usage & MEM_STREAM_OUTPUT);
-    assert(mem_stream_check_buffer_size(stream, stream->position + sizeof(val)) ==
-        MEM_STREAM_OK);
+    mem_stream_check_buffer_size(stream, stream->position + sizeof(val));
 
     *(uint16_t*)((uint8_t*)stream->buffer + stream->position) = val;
     stream->position += sizeof(val);
@@ -242,8 +246,7 @@ MEM_STREAM_API void mem_stream_write_uint16(mem_stream_t* stream,uint16_t val) {
 
 MEM_STREAM_API void mem_stream_write_int32(mem_stream_t* stream,int32_t val) {
     assert(stream->usage & MEM_STREAM_OUTPUT);
-    assert(mem_stream_check_buffer_size(stream, stream->position + sizeof(val)) ==
-        MEM_STREAM_OK);
+    mem_stream_check_buffer_size(stream, stream->position + sizeof(val));
 
     *(uint32_t*)((uint8_t*)stream->buffer + stream->position) = val;
     stream->position += sizeof(val);
@@ -254,8 +257,7 @@ MEM_STREAM_API void mem_stream_write_int32(mem_stream_t* stream,int32_t val) {
 
 MEM_STREAM_API void mem_stream_write_uint32(mem_stream_t* stream,uint32_t val) {
     assert(stream->usage & MEM_STREAM_OUTPUT);
-    assert(mem_stream_check_buffer_size(stream, stream->position + sizeof(val)) ==
-        MEM_STREAM_OK);
+    mem_stream_check_buffer_size(stream, stream->position + sizeof(val));
 
     *(uint32_t*)((uint8_t*)stream->buffer + stream->position) = val;
     stream->position += sizeof(val);
@@ -266,8 +268,7 @@ MEM_STREAM_API void mem_stream_write_uint32(mem_stream_t* stream,uint32_t val) {
 
 MEM_STREAM_API void mem_stream_write_int64(mem_stream_t* stream,int64_t val) {
     assert(stream->usage & MEM_STREAM_OUTPUT);
-    assert(mem_stream_check_buffer_size(stream, stream->position + sizeof(val)) ==
-        MEM_STREAM_OK);
+    mem_stream_check_buffer_size(stream, stream->position + sizeof(val));
 
     *(uint64_t*)((uint8_t*)stream->buffer + stream->position) = val;
     stream->position += sizeof(val);
@@ -277,8 +278,7 @@ MEM_STREAM_API void mem_stream_write_int64(mem_stream_t* stream,int64_t val) {
 
 MEM_STREAM_API void mem_stream_write_uint64(mem_stream_t* stream,uint64_t val) {
     assert(stream->usage & MEM_STREAM_OUTPUT);
-    assert(mem_stream_check_buffer_size(stream, stream->position + sizeof(val)) ==
-        MEM_STREAM_OK);
+    mem_stream_check_buffer_size(stream, stream->position + sizeof(val));
 
     *(uint64_t*)((uint8_t*)stream->buffer + stream->position) = val;
     stream->position += sizeof(val);
@@ -288,8 +288,7 @@ MEM_STREAM_API void mem_stream_write_uint64(mem_stream_t* stream,uint64_t val) {
 
 MEM_STREAM_API void mem_stream_write_float(mem_stream_t* stream,float val) {
     assert(stream->usage & MEM_STREAM_OUTPUT);
-    assert(mem_stream_check_buffer_size(stream, stream->position + sizeof(val)) ==
-        MEM_STREAM_OK);
+    mem_stream_check_buffer_size(stream, stream->position + sizeof(val));
 
     *(float*)((uint8_t*)stream->buffer + stream->position) = val;
     stream->position += sizeof(val);
@@ -300,8 +299,7 @@ MEM_STREAM_API void mem_stream_write_float(mem_stream_t* stream,float val) {
 
 MEM_STREAM_API void mem_stream_write_double(mem_stream_t* stream,double val) {
     assert(stream->usage & MEM_STREAM_OUTPUT);
-    assert(mem_stream_check_buffer_size(stream, stream->position + sizeof(val)) ==
-        MEM_STREAM_OK);
+    mem_stream_check_buffer_size(stream, stream->position + sizeof(val));
 
     *(double*)((uint8_t*)stream->buffer + stream->position) = val;
     stream->position += sizeof(val);
@@ -312,9 +310,8 @@ MEM_STREAM_API void mem_stream_write_double(mem_stream_t* stream,double val) {
 
 MEM_STREAM_API void mem_stream_write(mem_stream_t* stream, void* buffer, uint32_t size) {
     assert(stream->usage & MEM_STREAM_OUTPUT);
-    assert(mem_stream_check_buffer_size(stream, stream->position + size) ==
-        MEM_STREAM_OK);
-
+    mem_stream_check_buffer_size(stream, stream->position + size);
+    
     memcpy((uint8_t*)stream->buffer + stream->position,buffer, size);
     stream->position += size;
 
