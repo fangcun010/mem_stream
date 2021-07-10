@@ -44,6 +44,7 @@ static int mem_stream_check_buffer_size(mem_stream_t* stream, uint32_t need_size
 
         memcpy(buffer, stream->buffer, stream->size);
         free(stream->buffer);
+        stream->buffer = buffer;
     }
 
     stream->buffer = buffer;
@@ -298,7 +299,7 @@ MEM_STREAM_API void mem_stream_write_float(mem_stream_t* stream,float val) {
     stream->position += sizeof(val);
 
     if (stream->position > stream->size)
-        stream->size = stream->position;
+        stream->size = stream->position+1;
 }
 
 MEM_STREAM_API void mem_stream_write_double(mem_stream_t* stream,double val) {
