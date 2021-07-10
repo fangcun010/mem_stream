@@ -5,12 +5,12 @@
 mem_stream_t stream;
 
 void test_write() {
-    for (uint32_t i = 1; i < 132; i++)
+    for (uint32_t i = 1; i < 23000002; i++)
         mem_stream_write_uint32(&stream, i);
 }
 
 void test_read() {
-    for (uint32_t i = 1; i < 32; i++) {
+    for (uint32_t i = 1; i < 3002; i++) {
         uint32_t val = mem_stream_read_uint32(&stream);
         printf("%u\n", val);
     }
