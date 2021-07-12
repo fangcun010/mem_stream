@@ -9,9 +9,11 @@ int mem_stream_open(mem_stream_t* stream, void* buffer, uint32_t buffer_size, ui
 
 void mem_stream_close(mem_stream_t* stream);
 
-void mem_stream_data(mem_stream_t* stream);
+void* mem_stream_data(mem_stream_t* stream);
 
 void mem_stream_position(mem_stream_t* stream);
+
+void mem_stream_skip(mem_stream_t* stream, uint32_t skip);
 
 void mem_stream_seek(mem_stream_t* stream, uint32_t position);
 

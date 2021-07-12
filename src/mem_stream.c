@@ -81,12 +81,16 @@ MEM_STREAM_API void mem_stream_close(mem_stream_t* stream) {
     stream->size = 0;
 }
 
-MEM_STREAM_API void mem_stream_data(mem_stream_t* stream) {
+MEM_STREAM_API void* mem_stream_data(mem_stream_t* stream) {
     return stream->buffer;
 }
 
-MEM_STREAM_API void mem_stream_position(mem_stream_t* stream) {
+MEM_STREAM_API uint32_t mem_stream_position(mem_stream_t* stream) {
     return stream->position;
+}
+
+MEM_STREAM_API void mem_stream_skip(mem_stream_t* stream, uint32_t skip) {
+    stream->position += skip;
 }
 
 MEM_STREAM_API void mem_stream_seek(mem_stream_t* stream, uint32_t position) {

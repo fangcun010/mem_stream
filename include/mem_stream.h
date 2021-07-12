@@ -48,8 +48,9 @@ typedef struct {
 
 MEM_STREAM_API int mem_stream_open(mem_stream_t* stream, void* buffer, uint32_t buffer_size, uint32_t size, uint32_t usage);
 MEM_STREAM_API void mem_stream_close(mem_stream_t* stream);
-MEM_STREAM_API void mem_stream_data(mem_stream_t* stream);
-MEM_STREAM_API void mem_stream_position(mem_stream_t* stream);
+MEM_STREAM_API void* mem_stream_data(mem_stream_t* stream);
+MEM_STREAM_API uint32_t mem_stream_position(mem_stream_t* stream);
+MEM_STREAM_API void mem_stream_skip(mem_stream_t* stream, uint32_t skip);
 MEM_STREAM_API void mem_stream_seek(mem_stream_t* stream, uint32_t position);
 MEM_STREAM_API uint32_t mem_stream_size(mem_stream_t* stream);
 MEM_STREAM_API int8_t mem_stream_read_int8(mem_stream_t* stream);
