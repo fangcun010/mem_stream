@@ -74,6 +74,11 @@ MEM_STREAM_API void mem_stream_close(mem_stream_t* stream) {
     stream->size = 0;
 }
 
+MEM_STREAM_API void mem_stream_reset(mem_stream_t* stream) {
+    stream->position = 0;
+    stream->size = 0;
+}
+
 MEM_STREAM_API void* mem_stream_data(mem_stream_t* stream) {
     return stream->buffer;
 }
