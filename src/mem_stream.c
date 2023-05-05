@@ -53,7 +53,8 @@ MEM_STREAM_API int mem_stream_open(mem_stream_t *stream,void* buffer,uint32_t bu
         stream->buffer = malloc(buffer_size);
         if (!stream->buffer)
             return MEM_STREAM_ERROR;
-        memcpy(stream->buffer, buffer, size);
+        if(buffer)
+            memcpy(stream->buffer, buffer, size);
     }
     else {
         stream->buffer = buffer;
