@@ -37,15 +37,8 @@ static int mem_stream_check_buffer_size(mem_stream_t* stream, uint32_t need_size
     uint32_t buffer_size = stream->buffer_size * 2 >= need_size ? stream->buffer_size * 2 : need_size;
     void* buffer = realloc(stream->buffer,buffer_size);
 
-    if (!buffer) {
-        buffer = malloc(buffer_size);
-        if (!buffer)
-            return MEM_STREAM_ERROR;
-
-        memcpy(buffer, stream->buffer, stream->size);
-        free(stream->buffer);
-        stream->buffer = buffer;
-    }
+    if (!buffer)
+        return MEM_STREAM_ERROR;
 
     stream->buffer = buffer;
     stream->buffer_size = buffer_size;
